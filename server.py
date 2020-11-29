@@ -7,7 +7,8 @@ HOST = '127.0.0.1'
 PORT = 65432
 THREADCOUNT = 0
 CLIENT_WITH_JOB = set()
-JOBS = ['3 ' + socket.gethostbyname(socket.gethostname())]
+JOBS = ['3 ' + socket.gethostbyname(socket.gethostname()), '2 ' + HOST + ' ' + str(PORT)]
+JOBS_MULTIPLE = ['2']
 
 def threaded_server(connection, addr):
     global THREADCOUNT
@@ -35,6 +36,8 @@ def threaded_server(connection, addr):
                 connection.sendall(str.encode("250 " + str(current_job)))
                 job_given = True
                 print("Server: 250 job send to Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]))
+            else:
+                pass
         
         elif data.decode('utf-8') == "REQUEST JOB" and job_given:
             connection.sendall(str.encode("452"))
@@ -45,11 +48,15 @@ def threaded_server(connection, addr):
             job_given = False
             data = answer.decode('utf-8')
             data = eval(data)
-            print("Abaliable devices in the network: ")
-            print("IP" + " "*18 + "MAC")
-            for ip in data:
-                print("{:16}    {}".format(ip['ip'], ip['mac'])) 
-            print("Server: 251 Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]) + " did the job correctly")
+            if data[-1] == 3:
+                print("Abaliable devices in the network: ")
+                print("IP" + " "*18 + "MAC")
+                for ip in data:
+                    print("{:16}    {}".format(ip['ip'], ip['mac'])) 
+                print("Server: 251 Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]) + " did the job correctly")
+            elif data[-1] == 2:
+                print("The ip address:",data[0], "and the port:",data[1],"has the status:",data[2])
+                print("Server: 251 Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]) + " did the job correctly")
             current_job = None
     connection.close() 
 
