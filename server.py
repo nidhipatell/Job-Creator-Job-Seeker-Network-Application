@@ -10,8 +10,9 @@ CLIENT_WITH_JOB = set()
 JOBS = ['3 ' + socket.gethostbyname(socket.gethostname()), '2 ' + HOST + ' ' + str(PORT)]
 JOBS_MULTIPLE = ['4 ' + HOST + ' ' + str(PORT), '5 ' + HOST + ' ' + str(PORT)]
 given = []
+curr_given = 0
 def threaded_server(connection, addr):
-    global THREADCOUNT, given
+    global THREADCOUNT, given, curr_given
     print(addr, THREADCOUNT)
     job_given = False
     current_job = None
@@ -34,6 +35,7 @@ def threaded_server(connection, addr):
         elif data.decode('utf-8') == "REQUEST JOB" and not job_given:
             if THREADCOUNT == 1:
                 current_job = random.choice(JOBS)
+                curr_given = current_job[0]
                 connection.sendall(str.encode("250 " + str(current_job)))
                 job_given = True
                 print("Server: 250 job send to Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]))
@@ -41,11 +43,13 @@ def threaded_server(connection, addr):
                 if not given:
                     current_job = random.choice(JOBS_MULTIPLE)
                     given.append(current_job)
+                    curr_given = current_job[0]
                     connection.sendall(str.encode("250 " + str(current_job)))
                     job_given = True
                     print("Server: 250 job send to Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]))
                 else:
                     current_job = given[0]
+                    curr_given = current_job[0]
                     connection.sendall(str.encode("250 " + str(current_job)))
                     job_given = True
                     print("Server: 250 job send to Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]))
@@ -60,7 +64,7 @@ def threaded_server(connection, addr):
             job_given = False
             data = answer.decode('utf-8')
             data = eval(data)
-            if data[-1] == 3:
+            if int(curr_given) == 3:
                 print("Abaliable devices in the network: ")
                 print("IP" + " "*18 + "MAC")
                 for ip in data:
@@ -71,11 +75,11 @@ def threaded_server(connection, addr):
                 print("Server: 251 Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]) + " did the job correctly")
             elif data[-1] == 4:
                 given=[]
-                print("The ip address:",data[0], "and the port:", data[1],"was used for a TCP/SYN Flood attack by sending over:", data[3], "packets")
+                print("The ip address:",data[0], "and the port:", data[1],"was used for a TCP/SYN Flood attack by sending over:", data[2], "packets")
                 print("Server: 251 Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]) + " did the job correctly")
             elif data[-1] == 5:
                 given=[]
-                print("The ip address:",data[0], "and the port:", data[1],"was used for a ICMP Flood attack by sending over:", data[3], "packets")
+                print("The ip address:",data[0], "and the port:", data[1],"was used for a ICMP Flood attack by sending over:", data[2], "packets")
                 print("Server: 251 Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]) + " did the job correctly")
             current_job = None
             
