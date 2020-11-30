@@ -8,14 +8,15 @@ PORT = 65432
 THREADCOUNT = 0
 CLIENT_WITH_JOB = set()
 JOBS = ['3 ' + socket.gethostbyname(socket.gethostname()), '2 ' + HOST + ' ' + str(PORT)]
-JOBS_MULTIPLE = ['2']
-
+JOBS_MULTIPLE = ['4 ' + HOST + ' ' + str(PORT), '5 ' + HOST + ' ' + str(PORT)]
+given = []
 def threaded_server(connection, addr):
-    global THREADCOUNT
+    global THREADCOUNT, given
     print(addr, THREADCOUNT)
     job_given = False
     current_job = None
     connection.send(str.encode("220 " + str(THREADCOUNT)))
+    
     print("220 Welcome to the Server you are Client #" + str(THREADCOUNT))
     while True:
         #print("Waiting for data from client #" + str(THREADCOUNT))
@@ -37,7 +38,18 @@ def threaded_server(connection, addr):
                 job_given = True
                 print("Server: 250 job send to Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]))
             else:
-                pass
+                if not given:
+                    current_job = random.choice(JOBS_MULTIPLE)
+                    given.append(current_job)
+                    connection.sendall(str.encode("250 " + str(current_job)))
+                    job_given = True
+                    print("Server: 250 job send to Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]))
+                else:
+                    current_job = given[0]
+                    connection.sendall(str.encode("250 " + str(current_job)))
+                    job_given = True
+                    print("Server: 250 job send to Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]))
+                
         
         elif data.decode('utf-8') == "REQUEST JOB" and job_given:
             connection.sendall(str.encode("452"))
@@ -57,7 +69,14 @@ def threaded_server(connection, addr):
             elif data[-1] == 2:
                 print("The ip address:",data[0], "and the port:",data[1],"has the status:",data[2])
                 print("Server: 251 Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]) + " did the job correctly")
+            elif data[-1] == 4:
+                given=[]
+                print("The ip address:",data[0], "and the port:", data[1],"was used for a TCP/SYN Flood attack by sending over:", data[3], "packets")
+                print("Server: 251 Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]) + " did the job correctly")
+            
+            
             current_job = None
+            
     connection.close() 
 
 def main():
