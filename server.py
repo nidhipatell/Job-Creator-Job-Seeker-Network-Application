@@ -73,8 +73,10 @@ def threaded_server(connection, addr):
                 given=[]
                 print("The ip address:",data[0], "and the port:", data[1],"was used for a TCP/SYN Flood attack by sending over:", data[3], "packets")
                 print("Server: 251 Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]) + " did the job correctly")
-            
-            
+            elif data[-1] == 5:
+                given=[]
+                print("The ip address:",data[0], "and the port:", data[1],"was used for a ICMP Flood attack by sending over:", data[3], "packets")
+                print("Server: 251 Client #" + str(THREADCOUNT) + " with address of " + str(addr[0]), str(addr[1]) + " did the job correctly")
             current_job = None
             
     connection.close() 

