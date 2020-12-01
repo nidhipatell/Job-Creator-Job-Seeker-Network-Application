@@ -1,7 +1,7 @@
 # Job-Creator-Job-Seeker-Network-Application
 
 
-##One-to-One Jobs
+## One-to-One Jobs
 
 We created job-seeker and job-creator python programs to:
 
@@ -11,7 +11,7 @@ b. Detect all live IP addresses on a given subnet. The job description contains 
 in a.b.c.d/x format
 
 
-Screenshots 1 - 5 show the following functions between the Client and Server:
+### Screenshots 1 - 5 show the following functions between the Client and Server:
 
 SS 1. The Server connects to the Client (IP Address 127.0.0.1, Port # 56328).
 
@@ -25,11 +25,16 @@ SS 5. Client uses command SEND JOB to Server, detection of all live IP Addresses
 
 
 
-##One-to-Many Jobs
+## One-to-Many Jobs
 
 We created job-seeker and job-creator python programs to:
 
 a. Ask more than one job seeker to execute an ICMP flood attack against a given IP or subnet, and 
 
-b. 
+b. Ask more than one job seeker to execute a TCP flood attack ( any TCP flood attack) against a given port on a given IP.
+
+
+### Screenshots 6 - 10 show the following functionalities between the Clients and Server:
+
+
 
