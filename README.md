@@ -14,12 +14,16 @@ in a.b.c.d/x format
 ### *Screenshots 1 - 5 show the following functions between the Client and Server:*
 
 SS 1. The Server connects to the Client (IP Address 127.0.0.1, Port # 56328).
+![screenshot 1](/screenshots/1.png)
 
 SS 2. Client uses command REQUEST JOB, sent to Server.
+![screenshot 2](/screenshots/2.png)
 
 SS 3. Job successful, Port # is 65432.
+![screenshot 3](/screenshots/3.png)
 
 SS 4. Client uses command SEND JOB to Server, detection of Client status is checked by Server (Port # 65432 is Open).
+![screenshot 4](/screenshots/4.png)
 
 SS 5. Client uses command SEND JOB to Server, detection of all live IP Addresses is successful (IP Addresses in given network's subnet are displayed).
 
