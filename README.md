@@ -36,5 +36,13 @@ b. Ask more than one job seeker to execute a TCP flood attack ( any TCP flood at
 
 ### Screenshots 6 - 10 show the following functionalities between the Clients and Server:
 
+SS 6. Server connects two Clients, Client #1 and Client #2
 
+SS 7. 
+
+SS 8. Client #2, performs TCP Flood attack, given address 127.0.0.1 59288. Job is successful, sends 2501 packets to the Server through Port 65432.
+
+SS 9. Client #2, performs TCP Flood attack, given address 127.0.0.1 59292. Job is successful, sends 2501 packets to the Server through Port 65432.
+
+SS 10. 
 
