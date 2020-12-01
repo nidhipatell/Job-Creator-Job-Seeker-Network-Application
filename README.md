@@ -26,7 +26,7 @@ SS 4. Client uses command SEND JOB to Server, detection of Client status is chec
 ![screenshot 4](/screenshots/4.png)
 
 SS 5. Client uses command SEND JOB to Server, detection of all live IP Addresses is successful (IP Addresses in given network's subnet are displayed).
-
+![screenshot 5](/screenshots/5.png)
 
 
 ## One-to-Many Jobs
@@ -41,12 +41,17 @@ b. Ask more than one job seeker to execute a TCP flood attack ( any TCP flood at
 ### *Screenshots 6 - 10 show the following functionalities between the Clients and Server:*
 
 SS 6. Server connects two Clients, Client #1 and Client #2
+![screenshot 6](/screenshots/6.png)
 
 SS 7. Client #1 (127.0.0.1 58672) and Client #2 (127.0.0.1 58627) have connected to the Server
+![screenshot 7](/screenshots/7.png)
 
 SS 8. Client #1 (127.0.0.1 58912) and #2 (127.0.0.1 58909), perform TCP Flood attack. Job is successful, sends 2501 packets to the Server through Port 65432. **Different port numbers in Client 1 and Client 2 are a result of a bug, and a typo in the sentence for Client 1 says the job belongs to Client 2.**
+![screenshot 8](/screenshots/8.png)
 
 SS 9. Client #1 (127.0.0.1 59288) and #2 (127.0.0.1 59292), perform TCP Flood attack. Job is successful, sends 2501 packets to the Server through Port 65432. **Different port numbers in Client 1 and Client 2 are a result of a bug, and a typo in the sentence for Client 1 says the job belongs to Client 2.**
+![screenshot 9](/screenshots/9.png)
 
 SS 10. Clients #1 and #2 use command QUIT, Server shows that connection between the clients and server is closed.
+![screenshot 10](/screenshots/10.png)
 
