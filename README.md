@@ -40,9 +40,9 @@ SS 6. Server connects two Clients, Client #1 and Client #2
 
 SS 7. Client #1 (127.0.0.1 58672) and Client #2 (127.0.0.1 58627) have connected to the Server
 
-SS 8. Client #1 (127.0.0.1 58912) and #2 (127.0.0.1 58909), perform TCP Flood attack. Job is successful, sends 2501 packets to the Server through Port 65432. ** Different port numbers in Client 1 and Client 2 are a result of a bug, and a typo in the sentence for Client 1 says the job belongs to Client 2. **
+SS 8. Client #1 (127.0.0.1 58912) and #2 (127.0.0.1 58909), perform TCP Flood attack. Job is successful, sends 2501 packets to the Server through Port 65432. **Different port numbers in Client 1 and Client 2 are a result of a bug, and a typo in the sentence for Client 1 says the job belongs to Client 2.**
 
-SS 9. Client #2, performs ICMP Flood attack, given address 127.0.0.1 59292. Job is successful, sends 2501 packets to the Server through Port 65432.
+SS 9. Client #1 (127.0.0.1 59288) and #2 (127.0.0.1 59292), perform TCP Flood attack. Job is successful, sends 2501 packets to the Server through Port 65432. **Different port numbers in Client 1 and Client 2 are a result of a bug, and a typo in the sentence for Client 1 says the job belongs to Client 2.**
 
-SS 10. 
+SS 10. Clients #1 and #2 use command QUIT, Server shows that connection between the clients and server is closed.
 
