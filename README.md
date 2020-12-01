@@ -1,7 +1,7 @@
 # Job-Creator-Job-Seeker-Network-Application
 
 
-One-to-One Jobs
+##One-to-One Jobs
 
 We created job-seeker and job-creator python programs to:
 
@@ -25,7 +25,7 @@ SS 5. Client uses command SEND JOB to Server, detection of all live IP Addresses
 
 
 
-One-to-Many Jobs
+##One-to-Many Jobs
 
 We created job-seeker and job-creator python programs to:
 
