@@ -11,7 +11,7 @@ b. Detect all live IP addresses on a given subnet. The job description contains 
 in a.b.c.d/x format
 
 
-### Screenshots 1 - 5 show the following functions between the Client and Server:
+### *Screenshots 1 - 5 show the following functions between the Client and Server:*
 
 SS 1. The Server connects to the Client (IP Address 127.0.0.1, Port # 56328).
 
@@ -34,7 +34,7 @@ a. Ask more than one job seeker to execute an ICMP flood attack against a given 
 b. Ask more than one job seeker to execute a TCP flood attack ( any TCP flood attack) against a given port on a given IP.
 
 
-### Screenshots 6 - 10 show the following functionalities between the Clients and Server:
+### *Screenshots 6 - 10 show the following functionalities between the Clients and Server:*
 
 SS 6. Server connects two Clients, Client #1 and Client #2
 
